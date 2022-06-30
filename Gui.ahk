@@ -14,8 +14,9 @@ Gui, Add, Button, x222 y100 w60 h30 gclean, 清除
 Gui, Add, Text, x320 y108 w90 h20 ,用户名: 
 Gui, Add, Edit, x362 y105 w90 h20 vuserName,
 Gui, Add, Edit, x2 y130 w460 h70 voutputText,
+Gui, Add, Text, x390 y202 w460 h10 ,Author: Din 
 ; Generated using SmartGUI Creator 4.0
-Gui, Show, x127 y117 h202 w462, 转换
+Gui, Show, x127 y117 h215 w462, 转换
 Return
 
 GuiClose:
@@ -55,13 +56,12 @@ if(inputText){
 	{
 		if !(A_LoopField=""){
 			StringSplit, word_array, A_LoopField,"	", .
-			usdt_method := "ST支付"
-			IfInString,word_array6,%usdt_method%
-			{
-				line_text = %word_array1%  %word_array5%  %word_array7%
+			usdt_method := "银行"
+			If (InStr(word_array7, usdt_method)){
+				line_text = %word_array1%  %word_array5%  银行卡提现
 			}
 			else{
-				line_text = %word_array1%  %word_array5%  银行卡提现
+				line_text = %word_array1%  %word_array5%  %word_array7%
 			}
 			result = %line_text%
 			text = %text%`n%result%
